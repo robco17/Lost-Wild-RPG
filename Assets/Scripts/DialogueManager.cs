@@ -15,15 +15,17 @@ public class DialogueManager : MonoBehaviour
     public Text npcName;
     public Text npcDialogueBox;
     public Text playerResponse;
+    public ThirdPersonMovement thirdPersonMovement;
 
 
     // Start is called before the first frame update
     void Start()
     {
         dialogueUI.SetActive(false);
+        thirdPersonMovement = GetComponent<ThirdPersonMovement>();
     }
 
-    void OnMouseOver()
+    void Update()
     {
         distance = Vector3.Distance(player.transform.position, this.transform.position);
         if (distance <= 2.5f)
@@ -89,11 +91,15 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.SetActive(true);
         npcName.text = npc.name;
         npcDialogueBox.text = npc.dialogue[0];
+        thirdPersonMovement.speed = 0f;
+        thirdPersonMovement.jumpHeight = 0f;
     }
 
     void EndDialogue()
     {
         isTalking = false;
         dialogueUI.SetActive(false);
+        thirdPersonMovement.speed = 7f;
+        thirdPersonMovement.jumpHeight = 2f;
     }
 }
