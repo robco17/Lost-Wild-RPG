@@ -19,6 +19,7 @@ public class ThirdPersonMovement : MonoBehaviour
     float turnSmoothVelocity;
     Vector3 velocity;
     bool isGrounded;
+    public bool canMove = true;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,12 @@ public class ThirdPersonMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+        // Restricts movement when in conversation.
+        if (!canMove)
+        {
+            direction = Vector3.zero;
+        }
         
         // Has the player move in the direction of the camera.
         if (direction.magnitude >= 0.1f)
@@ -53,7 +60,7 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
         // Allows the character to jump using the Space Bar.
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && canMove)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }

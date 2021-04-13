@@ -17,12 +17,11 @@ public class DialogueManager : MonoBehaviour
     public Text playerResponse;
     public ThirdPersonMovement thirdPersonMovement;
 
-
     // Start is called before the first frame update
     void Start()
     {
         dialogueUI.SetActive(false);
-        thirdPersonMovement = GetComponent<ThirdPersonMovement>();
+        thirdPersonMovement = GameObject.Find("Player").GetComponent<ThirdPersonMovement>();
     }
 
     void Update()
@@ -91,15 +90,17 @@ public class DialogueManager : MonoBehaviour
         dialogueUI.SetActive(true);
         npcName.text = npc.name;
         npcDialogueBox.text = npc.dialogue[0];
-        thirdPersonMovement.speed = 0f;
-        thirdPersonMovement.jumpHeight = 0f;
+        thirdPersonMovement.canMove = false;
+        //thirdPersonMovement.speed = 0f;
+        //thirdPersonMovement.jumpHeight = 0f;
     }
 
     void EndDialogue()
     {
         isTalking = false;
         dialogueUI.SetActive(false);
-        thirdPersonMovement.speed = 7f;
-        thirdPersonMovement.jumpHeight = 2f;
+        thirdPersonMovement.canMove = true;
+        //thirdPersonMovement.speed = 7f;
+        //thirdPersonMovement.jumpHeight = 2f;
     }
 }
