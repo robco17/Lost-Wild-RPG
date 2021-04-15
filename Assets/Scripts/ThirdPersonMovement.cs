@@ -20,6 +20,7 @@ public class ThirdPersonMovement : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
     public bool canMove = true;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,12 @@ public class ThirdPersonMovement : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+
+
+        //Set the Float value of the Animator
+        float magnitude = direction.magnitude;
+        anim.SetFloat("MoveSpeed", magnitude * speed);
+
 
         // Restricts movement when in conversation.
         if (!canMove)
