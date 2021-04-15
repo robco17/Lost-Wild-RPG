@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-// This script is used from 
+// This code was used from https://www.youtube.com/watch?v=WBH4LecZCwE
+
 public class DialogueManager : MonoBehaviour
 {
     public NPC npc;
@@ -11,11 +13,12 @@ public class DialogueManager : MonoBehaviour
     float distance;
     float curResponseTracker = 0;
     public GameObject player;
+    public GameObject eButton;
     public GameObject dialogueUI;
     public Text npcName;
     public Text npcDialogueBox;
     public Text playerResponse;
-    public ThirdPersonMovement thirdPersonMovement;
+    private ThirdPersonMovement thirdPersonMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -45,11 +48,24 @@ public class DialogueManager : MonoBehaviour
                     curResponseTracker = 0;
                 }
             }
-            // Triggers dialogue
             if (Input.GetKeyDown(KeyCode.E) && isTalking == false)
             {
                 StartConversation();
             }
+            /* Triggers the interact button to appear.
+            if (isTalking == false)
+            {
+                if (!eButton.active)
+                {
+                    eButton.SetActive(true);
+                }
+                
+                // Triggers dialogue
+                else if (Input.GetKeyDown(KeyCode.E) && isTalking == false)
+                {
+                    StartConversation();
+                }
+            }*/
             else if (Input.GetKeyDown(KeyCode.E) && isTalking == true)
             {
                 EndDialogue();
@@ -73,13 +89,12 @@ public class DialogueManager : MonoBehaviour
             }
             else if (curResponseTracker == 2 && npc.playerDialogue.Length >= 2)
             {
-                playerResponse.text = npc.playerDialogue[2];
+                playerResponse.text = npc.playerDialogue[1];
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
                     npcDialogueBox.text = npc.dialogue[3];
                 }
             }
-
         }
     }
 
