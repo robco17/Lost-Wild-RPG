@@ -21,11 +21,13 @@ public class ThirdPersonMovement : MonoBehaviour
     bool isGrounded;
     public bool canMove = true;
     public Animator anim;
+    public GameObject player;
+    public float Health = 100f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
