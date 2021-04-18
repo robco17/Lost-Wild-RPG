@@ -17,8 +17,9 @@ public class ThirdPersonMovement : MonoBehaviour
     public float jumpHeight = 2f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    [HideInInspector] public bool isMoving = false;
     Vector3 velocity;
-    bool isGrounded;
+    [HideInInspector] public bool isGrounded;
     public bool canMove = true;
     public Animator anim;
     public GameObject player;
@@ -45,11 +46,10 @@ public class ThirdPersonMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-
         //Set the Float value of the Animator
         float magnitude = direction.magnitude;
         anim.SetFloat("MoveSpeed", magnitude * speed);
-
+        MovementChecking(direction);
 
         // Restricts movement when in conversation.
         if (!canMove)
@@ -77,5 +77,19 @@ public class ThirdPersonMovement : MonoBehaviour
         // Implementing the gravity system, it is constantly falling.
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    void MovementChecking(Vector3 playerDirection)
+    {
+        if (playerDirection != Vector3.zero && isGrounded)
+        {
+            isMoving = true;
+            Debug.Log("The player is moving " + isMoving);
+        }
+        else if (playerDirection == Vector3.zero && isGrounded)
+        {
+            isMoving = false;
+            Debug.Log("The player is not moving " + isMoving);
+        }
     }
 }
