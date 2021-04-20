@@ -72,6 +72,7 @@ public class ThirdPersonMovement : MonoBehaviour
         // Allows the character to jump using the Space Bar.
         if (Input.GetButtonDown("Jump") && isGrounded && canMove)
         {
+
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
