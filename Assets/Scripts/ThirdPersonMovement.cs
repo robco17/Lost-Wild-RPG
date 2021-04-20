@@ -29,6 +29,7 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        Screen.lockCursor = true;
     }
 
     // Update is called once per frame
