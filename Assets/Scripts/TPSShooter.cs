@@ -10,6 +10,8 @@ public class TPSShooter : MonoBehaviour
     public Transform firePoint;
     public float projectileSpeed = 30f;
 
+    private Vector3 destination;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +30,12 @@ public class TPSShooter : MonoBehaviour
 
     void ShootProjectile()
     {
-
+        InstantiateProjectile(firePoint);
     }
 
-    /*void InstantiateProjectile(Transform firePoint)
+    void InstantiateProjectile(Transform firePoint)
     {
-        var projectileObj = InstantiateProjectile(projectile, firePoint.position, Quaternion.identity) as GameObject;
-        projectileObj.GetComponent<Rigidbody>().velocity = (destination = firePoint.position).normalized * projectileSpeed;
-    }*/
+        var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
+        projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+    }
 }
