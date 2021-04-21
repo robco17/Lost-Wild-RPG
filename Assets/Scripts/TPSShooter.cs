@@ -11,6 +11,7 @@ public class TPSShooter : MonoBehaviour
     public float projectileSpeed = 30f;
 
     private Vector3 destination;
+    public Camera cam;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,14 @@ public class TPSShooter : MonoBehaviour
 
     void ShootProjectile()
     {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f,0.5f,0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+            destination = hit.point;
+            else
+            destination = ray.GetPoint(1000);
+        
         InstantiateProjectile(firePoint);
     }
 
