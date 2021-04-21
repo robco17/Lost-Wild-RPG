@@ -44,7 +44,8 @@ public class TPSShooter : MonoBehaviour
 
     void InstantiateProjectile(Transform firePoint)
     {
-        var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
-        projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+       // var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
+       // projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+       Instantiate(projectile, firePoint.position, firePoint.rotation);
     }
 }
