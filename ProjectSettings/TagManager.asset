@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Audio
   - Enemy
+  - Laser
+  - Victor
+  - Claire
+  - Grandma
+  - Simon
   layers:
   - Default
   - TransparentFX
