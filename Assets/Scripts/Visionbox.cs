@@ -8,7 +8,7 @@ public class Visionbox : MonoBehaviour
     public GameObject player;
 
     public GameObject enemy;
-    private ThirdPersonMovement playerMovement;
+    public ThirdPersonMovement playerMovement;
 
     private Enemy enemyActions;
 
@@ -34,6 +34,13 @@ public class Visionbox : MonoBehaviour
         void OnTriggerEnter(Collider collision) {
         if (collision.gameObject.CompareTag("Player")){
             agro = true;
+
+            if (enemyActions.meleeATK == true){
+                playerMovement.Health = playerMovement.Health - 10f;
+
+            }
+
+            
               
         }
 

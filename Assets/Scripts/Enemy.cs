@@ -32,6 +32,10 @@ public class Enemy : MonoBehaviour
 
     public float startTimeBtwShots;
 
+    private float timeBtwAttacks;
+
+    public float startTimeBtwAttacks;
+
     public GameObject front;
 
     public float health = 100f;
@@ -133,7 +137,17 @@ public class Enemy : MonoBehaviour
 
     }
 
-    void MeleeEnemy (){
+    public void MeleeEnemy (){
+        
+         if (timeBtwAttacks <=0){
+             playerMovement.Health = playerMovement.Health - 5;
+             timeBtwAttacks = startTimeBtwAttacks;
+
+            }else {
+                timeBtwAttacks -= Time.deltaTime;
+            }
+
+        
 
     }
 
@@ -144,7 +158,7 @@ public class Enemy : MonoBehaviour
             EnemyDeath();
 
         }
-
+        
        
     }
 
