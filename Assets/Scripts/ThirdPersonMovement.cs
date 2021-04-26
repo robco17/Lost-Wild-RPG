@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -79,6 +79,9 @@ public class ThirdPersonMovement : MonoBehaviour
         // Implementing the gravity system, it is constantly falling.
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        
+        
     }
 
     void MovementChecking(Vector3 playerDirection)
@@ -94,4 +97,12 @@ public class ThirdPersonMovement : MonoBehaviour
             Debug.Log("The player is not moving " + isMoving);
         }
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.CompareTag("Projectile")){
+            Health -= 10f;
+        }
+    }
+
+     
 }
