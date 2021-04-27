@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
 
 // Most of this script was used from Brackey's 1st & 3rd Person Movement videos.
 // https://www.youtube.com/watch?v=_QajrabyTJc & https://www.youtube.com/watch?v=4HpC--2iowE
@@ -24,6 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public Animator anim;
     public GameObject player;
     public float Health = 100f;
+    public Flowchart myFlowchart;
 
     // Start is called before the first frame update
     void Start()
@@ -104,5 +106,36 @@ public class ThirdPersonMovement : MonoBehaviour
         }
     }
 
-     
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Simon" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Simon");
+        }
+
+        if (other.gameObject.tag == "Claire" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Claire");
+        }
+
+        if (other.gameObject.tag == "Victor" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Victor");
+        }
+
+        if (other.gameObject.tag == "Grandma" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Grandma");
+        }
+    }
+
+    public void ShowCursor()
+    {
+        Screen.lockCursor = false;
+    }
+
+    public void HideCursor()
+    {
+        Screen.lockCursor = true;
+    }
 }

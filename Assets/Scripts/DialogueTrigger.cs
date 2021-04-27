@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
+
+// Inactive script; DO NOT USE
+// Might come in handy later though.
 
 public class DialogueTrigger : MonoBehaviour
 {
