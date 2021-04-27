@@ -81,9 +81,6 @@ public class ThirdPersonMovement : MonoBehaviour
         // Implementing the gravity system, it is constantly falling.
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-        
-        
     }
 
     void MovementChecking(Vector3 playerDirection)
@@ -91,12 +88,11 @@ public class ThirdPersonMovement : MonoBehaviour
         if (playerDirection != Vector3.zero && isGrounded)
         {
             isMoving = true;
-            Debug.Log("The player is moving " + isMoving);
         }
         else if (playerDirection == Vector3.zero && isGrounded)
         {
             isMoving = false;
-            Debug.Log("The player is not moving " + isMoving);
+            //Debug.Log("The player is not moving " + isMoving);
         }
     }
 
