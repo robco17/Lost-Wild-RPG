@@ -13,6 +13,10 @@ public class TPSShooter : MonoBehaviour
     private Vector3 destination;
     public Camera cam;
 
+    private float timeBtwShoots;
+    public float startTimeBtwShots;
+    public GameObject front;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,14 @@ public class TPSShooter : MonoBehaviour
         // If the user left clicks, then the player casts a spell.
         if (Input.GetMouseButtonDown(0))
         {
-            ShootProjectile();
+            
+            if (timeBtwShoots <=0){
+             ShootProjectile();
+             timeBtwShoots = startTimeBtwShots;
+
+            }else {
+                timeBtwShoots -= Time.deltaTime;
+            }
         }
     }
 
