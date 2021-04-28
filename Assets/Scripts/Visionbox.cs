@@ -12,6 +12,23 @@ public class Visionbox : MonoBehaviour
 
     private Enemy enemyActions;
 
+    private MeleeEnemy meleeActions;
+
+    public GameObject meleeEnemy;
+
+    public float meleeDamage;
+
+    public float startTimeBtwAttacks;
+
+    public float timeBtwAttacks;
+
+     public GameObject projectile;
+
+      public GameObject front;
+
+      public bool inSight = false;
+    
+
 
     // Start is called before the first frame update
 
@@ -19,34 +36,43 @@ public class Visionbox : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        enemy = GameObject.Find("Enemy");
+        //enemy = GameObject.Find("Enemy");
         playerMovement = player.GetComponent<ThirdPersonMovement>();
-        enemyActions = enemy.GetComponent<Enemy>();
+        //enemyActions = enemy.GetComponent<Enemy>();
+        meleeEnemy = GameObject.Find("MeleeEnemy");
+        meleeActions = meleeEnemy.GetComponent<MeleeEnemy>();
+
 
 
     }
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+
     }
-
-        void OnTriggerEnter(Collider collision) {
+    
+     void OnTriggerEnter(Collider collision) {
         if (collision.gameObject.CompareTag("Player")){
-            agro = true;
-
-            if (enemyActions.meleeATK == true){
-                playerMovement.Health = playerMovement.Health - 10f;
-
-            }
+            inSight = true;
+            
 
             
               
         }
+     }
+        
+   //public void ATKMeleeEnemy (){
+        
+        //if (timeBtwAttacks <=0){
+             //Instantiate(projectile, front.transform.position, front.transform.rotation);
+             //timeBtwAttacks = startTimeBtwAttacks;
+
+           // }else {
+               //timeBtwAttacks -= Time.deltaTime;
+            //}
+
 
         
-        
-        
-    }
+
+    //}
     
 }

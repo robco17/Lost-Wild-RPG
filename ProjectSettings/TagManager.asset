@@ -11,6 +11,8 @@ TagManager:
   - Claire
   - Grandma
   - Simon
+  - Projectile
+  - EnemyMagic
   layers:
   - Default
   - TransparentFX

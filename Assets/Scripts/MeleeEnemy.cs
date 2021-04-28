@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class MeleeEnemy : MonoBehaviour
 {
+    
     private GameObject player;
     public float speed;
     public Transform[] moveSpots;
@@ -15,7 +16,6 @@ public class Enemy : MonoBehaviour
     public float range = 1.0f;
 
     private Visionbox visionBox;
-
     private AgroZone agroZone;
 
     public ThirdPersonMovement playerMovement;
@@ -34,9 +34,9 @@ public class Enemy : MonoBehaviour
 
     public float startTimeBtwShots;
 
-    private float timeBtwAttacks;
+    
 
-    public float startTimeBtwAttacks;
+    
 
     public GameObject front;
 
@@ -44,29 +44,23 @@ public class Enemy : MonoBehaviour
 
     private float projectileDMG = 10f;
 
-    public float rangeDamage;
     
-    //Code Sources : https://www.youtube.com/watch?v=_Z1t7MNk0c4
-
-
     // Start is called before the first frame update
     void Start()
     {
-          randomSpot = Random.Range(0, moveSpots.Length);
+        randomSpot = Random.Range(0, moveSpots.Length);
           Patrolling = true;
           visionBox = GameObject.Find("Visionbox").GetComponent<Visionbox>();
           player = GameObject.Find("Player");
           playerMovement = GetComponent<ThirdPersonMovement>();
           timeBtwShoots = startTimeBtwShots;
-          agroZone = GameObject.Find("AgroZone").GetComponent<AgroZone>();
-          
+         agroZone = GameObject.Find("AgroZone").GetComponent<AgroZone>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if(Patrolling == true){
+          if(Patrolling == true){
             GuardPatrol();
 
         }
@@ -75,18 +69,9 @@ public class Enemy : MonoBehaviour
             GuardAgro();
            
         }
-
-        //PlayerStatus();
-
-        
-
-         
-
     }
 
-    
-
-    void GuardPatrol (){
+     void GuardPatrol (){
         transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
         if (Vector3.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
         {
@@ -113,6 +98,13 @@ public class Enemy : MonoBehaviour
             }   
             if (meleeATK == true){
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                if (Distance <= 3){
+                    MEnemy();
+                    
+
+                }
+               
+                
             }
 
         }
@@ -142,19 +134,19 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void MeleeEnemy (){
+     void MEnemy () {
         
-         if (timeBtwAttacks <=0){
-             playerMovement.Health = playerMovement.Health - rangeDamage;
-             timeBtwAttacks = startTimeBtwAttacks;
+         if (timeBtwShoots <=0){
+             Instantiate(projectile, front.transform.position, front.transform.rotation);
+             timeBtwShoots = startTimeBtwShots;
 
             }else {
-                timeBtwAttacks -= Time.deltaTime;
+                timeBtwShoots -= Time.deltaTime;
             }
 
-        
-
     }
+
+    
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Projectile")){
@@ -172,6 +164,4 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-        
-    
 }
