@@ -54,6 +54,13 @@ public class ThirdPersonMovement : MonoBehaviour
         anim.SetFloat("MoveSpeed", magnitude * speed);
         MovementChecking(direction);
 
+
+        if (Health == 0f)
+        {
+            anim.SetBool("death2", true);
+            canMove = false;
+            }
+
         // Restricts movement when in conversation.
         if (!canMove)
         {
