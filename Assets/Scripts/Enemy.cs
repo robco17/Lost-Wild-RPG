@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     private AgroZone agroZone;
 
-    public ThirdPersonMovement playerMovement;
+    private ThirdPersonMovement playerMovement;
 
     public bool rangeATK = false;
 
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
 
     //private float mana = 100f;
 
-    public Transform target;
+    private Transform target;
 
     public GameObject projectile;
 
@@ -52,14 +52,14 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-          randomSpot = Random.Range(0, moveSpots.Length);
-          Patrolling = true;
-          visionBox = GameObject.Find("Visionbox").GetComponent<Visionbox>();
-          player = GameObject.Find("Player");
-          playerMovement = GetComponent<ThirdPersonMovement>();
-          timeBtwShoots = startTimeBtwShots;
-          agroZone = GameObject.Find("AgroZone").GetComponent<AgroZone>();
-          
+        target = GameObject.Find("Player").transform;
+        randomSpot = Random.Range(0, moveSpots.Length);
+        Patrolling = true;
+        visionBox = GameObject.Find("Visionbox").GetComponent<Visionbox>();
+        player = GameObject.Find("Player");
+        playerMovement = GetComponent<ThirdPersonMovement>();
+        timeBtwShoots = startTimeBtwShots;
+        agroZone = GameObject.Find("AgroZone").GetComponent<AgroZone>();
     }
 
     // Update is called once per frame
@@ -81,10 +81,7 @@ public class Enemy : MonoBehaviour
         
 
          
-
     }
-
-    
 
     void GuardPatrol (){
         transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
@@ -100,6 +97,7 @@ public class Enemy : MonoBehaviour
             Patrolling = true;
         }
     }
+
 //Sends Enemy towards the playa
     void GuardAgro (){
         Patrolling = false;

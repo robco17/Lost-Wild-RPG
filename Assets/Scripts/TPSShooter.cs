@@ -29,7 +29,6 @@ public class TPSShooter : MonoBehaviour
         // If the user left clicks, then the player casts a spell.
         if (Input.GetMouseButtonDown(0))
         {
-            
             if (timeBtwShoots <=0){
              ShootProjectile();
              timeBtwShoots = startTimeBtwShots;

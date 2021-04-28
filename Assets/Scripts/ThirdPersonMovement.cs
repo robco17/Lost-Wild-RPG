@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
 
 // Most of this script was used from Brackey's 1st & 3rd Person Movement videos.
 // https://www.youtube.com/watch?v=_QajrabyTJc & https://www.youtube.com/watch?v=4HpC--2iowE
@@ -24,6 +25,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public Animator anim;
     public GameObject player;
     public float Health = 100f;
+    public Flowchart myFlowchart;
 
     // Start is called before the first frame update
     void Start()
@@ -80,21 +82,25 @@ public class ThirdPersonMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        
-        
+        if (Health == 0f)
+        {
+            anim.SetTrigger("death");
+            canMove = false;
+        }
     }
 
+    // Checks if the user is currently moving or standing still.
     void MovementChecking(Vector3 playerDirection)
     {
         if (playerDirection != Vector3.zero && isGrounded)
         {
             isMoving = true;
-            Debug.Log("The player is moving " + isMoving);
+            //Debug.Log("The player is moving " + isMoving);
         }
         else if (playerDirection == Vector3.zero && isGrounded)
         {
             isMoving = false;
-            Debug.Log("The player is not moving " + isMoving);
+            //Debug.Log("The player is not moving " + isMoving);
         }
     }
 
@@ -105,5 +111,39 @@ public class ThirdPersonMovement : MonoBehaviour
         }
     }
 
-     
+    // If the player is within the trigger box; then talk to the NPC accordingly.
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Simon" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Simon");
+        }
+
+        if (other.gameObject.tag == "Claire" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Claire");
+        }
+
+        if (other.gameObject.tag == "Victor" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Victor");
+        }
+
+        if (other.gameObject.tag == "Grandma" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Grandma");
+        }
+    }
+
+    // Hides & centers the mouse.
+    public void ShowCursor()
+    {
+        Screen.lockCursor = false;
+    }
+
+    // Shows and allows the cursor to move around on the screen.
+    public void HideCursor()
+    {
+        Screen.lockCursor = true;
+    }
 }
