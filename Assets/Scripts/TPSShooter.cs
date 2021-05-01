@@ -14,7 +14,7 @@ public class TPSShooter : MonoBehaviour
     public Camera cam;
 
     private float timeBtwShoots;
-    public float startTimeBtwShots;
+    private float startTimeBtwShots = 0.01f;
     public GameObject front;
 
     // Start is called before the first frame update
