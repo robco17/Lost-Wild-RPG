@@ -55,6 +55,7 @@ public class MeleeEnemy : MonoBehaviour
           playerMovement = GetComponent<ThirdPersonMovement>();
           timeBtwShoots = startTimeBtwShots;
          agroZone = GameObject.Find("AgroZone").GetComponent<AgroZone>();
+         speed = 5f;
     }
 
     // Update is called once per frame
@@ -88,6 +89,7 @@ public class MeleeEnemy : MonoBehaviour
 //Sends Enemy towards the playa
     void GuardAgro (){
         Patrolling = false;
+        speed = 10f;
         float Distance = Vector3.Distance(transform.position, player.transform.position);
         if (Distance >= range){
              LookAtPlayer();
@@ -134,6 +136,7 @@ public class MeleeEnemy : MonoBehaviour
 
     }
 
+//Time between attacks
      void MEnemy () {
         
          if (timeBtwShoots <=0){
