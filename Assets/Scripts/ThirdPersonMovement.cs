@@ -28,11 +28,16 @@ public class ThirdPersonMovement : MonoBehaviour
     public Flowchart myFlowchart;
     public int numberOfEnemies;
 
+   
+ 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         Screen.lockCursor = true;
+       
     }
 
     // Update is called once per frame

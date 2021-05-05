@@ -17,6 +17,8 @@ public class TPSShooter : MonoBehaviour
     private float startTimeBtwShots = 0.01f;
     public GameObject front;
 
+     public AudioSource FireballSummon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class TPSShooter : MonoBehaviour
         // If the user left clicks, then the player casts a spell.
         if (Input.GetMouseButtonDown(0))
         {
+            FireballSummon.Play();
             if (timeBtwShoots <=0){
              ShootProjectile();
              timeBtwShoots = startTimeBtwShots;

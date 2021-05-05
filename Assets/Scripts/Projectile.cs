@@ -31,5 +31,11 @@ public class Projectile : MonoBehaviour
         else if (collision.gameObject.CompareTag("Enemy")){
             Destroy(gameObject);
         }
+        
+    }
+
+     void OnCollisionEnter(Collision other) {
+         Destroy(gameObject);
+        
     }
 }
