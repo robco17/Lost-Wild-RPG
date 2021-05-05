@@ -26,6 +26,7 @@ public class ThirdPersonMovement : MonoBehaviour
     public GameObject player;
     public float Health = 100f;
     public Flowchart myFlowchart;
+    public int numberOfEnemies;
 
     // Start is called before the first frame update
     void Start()
@@ -82,9 +83,14 @@ public class ThirdPersonMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        // Finds the number of enemies left (alive).
+        numberOfEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        myFlowchart.SetIntegerVariable("numberOfEnemies", numberOfEnemies);
+
+        // When the character dies, set the death animation and restrict movement.
         if (Health == 0f)
         {
-            anim.SetTrigger("death");
+            anim.SetBool("death2", true);
             canMove = false;
         }
     }
@@ -106,7 +112,7 @@ public class ThirdPersonMovement : MonoBehaviour
 
     // Player damaged by projectile
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("EnemyMagic")){
+        if (other.CompareTag("EnemyMagic")) {
             Health -= 10f;
         }
     }
@@ -132,6 +138,11 @@ public class ThirdPersonMovement : MonoBehaviour
         if (other.gameObject.tag == "Grandma" && Input.GetKeyDown(KeyCode.E))
         {
             myFlowchart.ExecuteBlock("Grandma");
+        }
+
+        if (other.gameObject.tag == "Tommy" && Input.GetKeyDown(KeyCode.E))
+        {
+            myFlowchart.ExecuteBlock("Tommy");
         }
     }
 

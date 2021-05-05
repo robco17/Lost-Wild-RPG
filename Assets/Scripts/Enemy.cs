@@ -130,13 +130,15 @@ public class Enemy : MonoBehaviour
 //Creates Projectile to shoot player
     void RangeEnemy () {
         
-         if (timeBtwShoots <=0){
+        if (timeBtwShoots <=0)
+        {
              Instantiate(projectile, front.transform.position, front.transform.rotation);
              timeBtwShoots = startTimeBtwShots;
-
-            }else {
-                timeBtwShoots -= Time.deltaTime;
-            }
+        }
+        else
+        {
+            timeBtwShoots -= Time.deltaTime;
+        }
 
     }
 

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 920307237924269353}
   m_Layer: 0
   m_Name: RangeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,10 +125,8 @@ MonoBehaviour:
   startWaitTime: 0
   Patrolling: 0
   range: 3
-  playerMovement: {fileID: 0}
   rangeATK: 1
   meleeATK: 0
-  target: {fileID: 0}
   projectile: {fileID: 7411452867677082681, guid: 9fc1156bc07819a46ae839334ed0d8a4,
     type: 3}
   startTimeBtwShots: 3
@@ -1107,7 +1105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5894580031770940639}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.854969, y: 1.7, z: -3.7078962}
+  m_LocalPosition: {x: 7.8807316, y: 1.7000008, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 834141170453413870}
@@ -1278,7 +1276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6098754585005121820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.645031, y: 1.7, z: -3.7078962}
+  m_LocalPosition: {x: 7.780732, y: 1.7000008, z: 0.40000248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 834141170453413870}
