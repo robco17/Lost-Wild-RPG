@@ -31,8 +31,9 @@ public class TPSShooter : MonoBehaviour
         // If the user left clicks, then the player casts a spell.
         if (Input.GetMouseButtonDown(0))
         {
-            FireballSummon.Play();
+           
             if (timeBtwShoots <=0){
+             FireballSummon.Play();
              ShootProjectile();
              timeBtwShoots = startTimeBtwShots;
 
