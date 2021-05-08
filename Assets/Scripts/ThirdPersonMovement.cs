@@ -27,10 +27,8 @@ public class ThirdPersonMovement : MonoBehaviour
     public float Health = 100f;
     public Flowchart myFlowchart;
     public int numberOfEnemies;
-
-   
- 
-    
+    public GameObject deathScreen;
+    public int isTalking = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -95,8 +93,23 @@ public class ThirdPersonMovement : MonoBehaviour
         // When the character dies, set the death animation and restrict movement.
         if (Health == 0f)
         {
+            // Displays the death screen on death.
+            deathScreen.SetActive(true);
             anim.SetBool("death2", true);
             canMove = false;
+            ShowCursor();
+        }
+
+        // Restricts movement when talking with NPCs
+        myFlowchart.SetIntegerVariable("isTalking", isTalking);
+        if (isTalking == 1)
+        {
+            canMove = false;
+        }
+
+        if (isTalking == 0)
+        {
+            canMove = true;
         }
     }
 
