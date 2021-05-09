@@ -28,14 +28,15 @@ public class ThirdPersonMovement : MonoBehaviour
     public Flowchart myFlowchart;
     public int numberOfEnemies;
     public GameObject deathScreen;
-    public int isTalking = 0;
+    public int isTalking;
+    private WalkingAudio audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
         Screen.lockCursor = true;
-       
+        audioManager = GameObject.Find("AudioManager").GetComponent<WalkingAudio>();
     }
 
     // Update is called once per frame
@@ -101,7 +102,7 @@ public class ThirdPersonMovement : MonoBehaviour
         }
 
         // Restricts movement when talking with NPCs
-        myFlowchart.SetIntegerVariable("isTalking", isTalking);
+        isTalking = myFlowchart.GetIntegerVariable("isTalking");
         if (isTalking == 1)
         {
             canMove = false;
@@ -132,6 +133,28 @@ public class ThirdPersonMovement : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("EnemyMagic")) {
             Health -= 10f;
+        }
+
+        if (other.CompareTag("Gravel"))
+        {
+            audioManager.footMaterialID = 0;
+        }
+
+        /*if (other.CompareTag("Grass"))
+        {
+            audioManager.footMaterialID = 1;
+        }*/
+    }
+
+    // Plays the grass audio when the player leaves the trigger box for gravel
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Gravel"))
+        {
+            if (audioManager.footMaterialID != 1)
+            {
+                audioManager.footMaterialID = 1;
+            }
         }
     }
 
