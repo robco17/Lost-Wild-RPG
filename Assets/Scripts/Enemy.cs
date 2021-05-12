@@ -71,10 +71,12 @@ public class Enemy : MonoBehaviour
 
         }
 
-        if (agroZone.enemyAgro == true) {
+        if (agroZone.enemyAgro == true ) {
             GuardAgro();
            
         }
+
+        
 
         //PlayerStatus();
 

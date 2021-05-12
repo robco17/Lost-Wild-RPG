@@ -66,10 +66,12 @@ public class MeleeEnemy : MonoBehaviour
 
         }
 
-        if (agroZone.enemyAgro == true) {
+        if (agroZone.enemyAgro == true ) {
             GuardAgro();
            
         }
+
+       
     }
 
      void GuardPatrol (){

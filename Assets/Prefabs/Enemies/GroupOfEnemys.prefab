@@ -74,8 +74,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 34.754585, y: 5.303993, z: 41.25447}
-  m_Center: {x: 0.33893204, y: 2.1519966, z: 2.7280464}
+  m_Size: {x: 52.699722, y: 5.303993, z: 47.09513}
+  m_Center: {x: 9.311501, y: 2.1519966, z: -0.19228363}
 --- !u!114 &6607885378918572650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,3 +93,9 @@ MonoBehaviour:
   enemy: {fileID: 0}
   playerMovement: {fileID: 0}
   meleeEnemy: {fileID: 0}
+  boomBox: {fileID: 0}
+  combatMusic: {fileID: 0}
+  backgroundIsPlaying: 1
+  combatIsPlaying: 0
+  combatIsAlreadyPlaying: 0
+  numberOfEnemies: 0
