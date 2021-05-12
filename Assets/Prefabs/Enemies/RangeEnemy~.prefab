@@ -129,7 +129,7 @@ MonoBehaviour:
   meleeATK: 0
   projectile: {fileID: 7411452867677082681, guid: 9fc1156bc07819a46ae839334ed0d8a4,
     type: 3}
-  startTimeBtwShots: 2
+  startTimeBtwShots: 3
   startTimeBtwAttacks: 0
   front: {fileID: 8949324758163828959}
   health: 100

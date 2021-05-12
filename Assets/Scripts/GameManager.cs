@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Restarts the scene
-    public void RestartScene()
+    public void StartScene()
     {
         SceneManager.LoadScene("MainScene");
     }
